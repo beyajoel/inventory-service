@@ -27,4 +27,8 @@ public class InventoryService {
                 .map(inventoryMapper::fromEntity)
                 .toList();
     }
+
+    public List<InventoryResponse> getAllStock() {
+        return inventoryRepository.findAll().stream().map(inventoryMapper::fromEntity).toList();
+    }
 }

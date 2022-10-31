@@ -4,6 +4,7 @@ import com.bent.inventoryservice.dto.InventoryResponse;
 import com.bent.inventoryservice.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,13 @@ public class InventoryController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode) {
-        return inventoryService.isInStock(skuCode);
+    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCodes) {
+        return inventoryService.isInStock(skuCodes);
+    }
+
+    @GetMapping(value = "all/")
+    @ResponseStatus(HttpStatus.OK)
+    public List<InventoryResponse> allStock() {
+        return inventoryService.getAllStock();
     }
 }
